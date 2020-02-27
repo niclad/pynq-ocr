@@ -19,6 +19,7 @@ This is the repository for our ADD project. Our project aims to perform OCR on a
 ### Links
 1. Training BNNs for PYNQ: [link](https://github.com/Xilinx/BNN-PYNQ/tree/master/bnn/src/training)
 2. Information on FINN overlay: [link](https://github.com/Xilinx/BNN-PYNQ/) (from above)
+3. Training a CNN on MNIST: [link](https://machinelearningmastery.com/how-to-develop-a-convolutional-neural-network-from-scratch-for-mnist-handwritten-digit-classification/)
 
 ### Research
 1. FINN paper: [link](https://arxiv.org/abs/1612.07119)
