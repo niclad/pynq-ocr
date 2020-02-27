@@ -4,7 +4,7 @@ Optical character recognition (OCR) on Xilinx PYNQ-v2.
 This is the repository for our ADD project. Our project aims to perform OCR on an FPGA -- specifically the Xilinx PYNQ-v2.
 
 ## Table of Contents
-A. [cnn_test](./cnn_test): a test of a CNN to test accuracy of neural net on MNIST. See [Link 3](https://github.com/niclad/pynq-ocr#links). This directory also contains relevant images.
+1. [cnn_test](./cnn_test): a test of a CNN to test accuracy of neural net on MNIST. See [Link 3](https://github.com/niclad/pynq-ocr#links). This directory also contains relevant images.
 
 ## Timeline (2020)
 - [x] Formal project proposal.
