@@ -2,7 +2,7 @@
 """
 Created on Wed Feb 26 19:13:53 2020
 
-@author: Nicolas
+@author: Nicolas Tedori
 """
 
 from keras.datasets import mnist
@@ -54,13 +54,15 @@ def prep_pixels(train, test):
 
 def define_model():
     model = Sequential()
+    # add layers to the sequential model
     model.add(kl.Conv2D(32, (3, 3), activation='relu', \
                      kernel_initializer='he_uniform', input_shape=(28, 28, 1)))
-    model.add(kl.MaxPooling2D((2, 2)))
-    model.add(kl.Flatten())
+    model.add(kl.MaxPooling2D((2, 2)))  # max pooling layer
+    model.add(kl.Flatten())             # Flatten
     model.add(kl.Dense(100, activation='relu', kernel_initializer='he_uniform'))
     model.add(kl.Dense(10, activation='softmax'))
     
+    # compile the model
     opt = SGD(lr=0.01, momentum=0.9)
     model.compile(optimizer=opt, loss='categorical_crossentropy', \
                   metrics=['accuracy'])
@@ -71,20 +73,26 @@ def define_model():
 def evaluate_model(data_x, data_y, n_folds=5):
     scores, histories = list(), list()
     
+    # define folds
     kfold = KFold(n_folds, shuffle=True, random_state=1)
     
+    # test the model in define_model() for 5 folds
     for train_ix, test_ix, in kfold.split(data_x):
-        model = define_model()
+        model = define_model()  # generate the model
         
+        # get data for the current fold
         train_x, train_y, test_x, test_y = data_x[train_ix], data_y[train_ix], \
             data_x[test_ix], data_y[test_ix]
-            
+        
+        # train a model on the given training data for 10 iterations
         history = model.fit(train_x, train_y, epochs=10, batch_size=32, \
                             validation_data=(test_x, test_y), verbose=0)
-            
+        
+        # get the loss for the model
         _, acc = model.evaluate(test_x, test_y, verbose=0)
         print('> {:0.3f}'.format(acc * 100.0))
         
+        # add evaluation data to lists
         scores.append(acc)
         histories.append(history)
         
@@ -118,6 +126,6 @@ def run_test_harness():
     train_x, test_x = prep_pixels(train_x, test_x)
     scores, histories = evaluate_model(train_x, train_y)
     summarize_diagnostics(histories)
-    summarize_performance(scores)
+    #summarize_performance(scores)
     
 run_test_harness()
