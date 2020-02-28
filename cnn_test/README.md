@@ -13,4 +13,11 @@ There are a few Python modules required for this code to run. They are listed be
 
 *included with Anaconda Python
 
-Installing these modules in a virtual environment is recommended as TensorFlow (and thus Keras) depends on Python 3.7 (current Python is 3.8).
+Installing these modules in a virtual environment is recommended as TensorFlow (and thus Keras) depends on Python 3.7.
+
+## Images
+mnist_sample.png - this is a sample of the first 9 digits from MNIST.
+accuracy.png - this is loss and accuracy of the model, over 10 epochs for 5-fold cross validation.
+
+## Notes
+This current version does not run inference on the text, however it does evaluate the performance of a possible model. This was developed in parallel with Spencer's implementation to compare methods and performance.
