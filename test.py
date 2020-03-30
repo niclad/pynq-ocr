@@ -2,14 +2,14 @@ import cv2
 import numpy as np
 choice = -1
 while choice != 1 and choice != 2:
-    choice = int(raw_input("Which set would you like to use? Enter 1 or 2:"))
+    choice = int(input("Which set would you like to use? Enter 1 or 2:"))
 # Training #
 if choice == 2:
     samples = np.loadtxt('set2generalsamples.data', np.float32)
     responses = np.loadtxt('set2generalresponses.data', np.float32)
 elif choice == 1:
-    samples = np.loadtxt('set1generalsamples.data', np.float32)
-    responses = np.loadtxt('set1generalresponses.data', np.float32)
+    samples = np.loadtxt('/home/xilinx/project_files/set1generalsamples.data', np.float32)
+    responses = np.loadtxt('/home/xilinx/project_files/set1generalresponses.data', np.float32)
 responses = responses.reshape((responses.size, 1))
 model = cv2.ml.KNearest_create()
 model.train(samples, cv2.ml.ROW_SAMPLE, responses)
@@ -18,7 +18,7 @@ model.train(samples, cv2.ml.ROW_SAMPLE, responses)
 if choice == 2:
     im = cv2.imread('set2test.png')
 elif choice == 1:
-    im = cv2.imread('set1test.png')
+    im = cv2.imread('/home/xilinx/project_files/set1test.png')
 
 out = np.zeros(im.shape, np.uint8)
 gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
@@ -39,6 +39,7 @@ for cnt in contours:
             string = str(int((results[0][0])))
             cv2.putText(out, string, (x, y + h), 0, 1, (0, 255, 0))
 
-cv2.imshow('im', im)
-cv2.imshow('out', out)
-cv2.waitKey(0)
+# cv2.imshow('im', im)
+cv2.imwrite("/home/xilinx/project_files/in.png", im)
+cv2.imwrite("/home/xilinx/project_files/out.png", out)
+# cv2.imshow('out', out)
